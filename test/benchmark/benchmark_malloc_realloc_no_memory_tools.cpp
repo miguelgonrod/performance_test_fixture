@@ -18,18 +18,14 @@
 
 #include "./macros.h"
 
-namespace benchmark_compat
-{
-
-#if defined(BENCHMARK_VERSION_MAJOR) && \
-  ((BENCHMARK_VERSION_MAJOR > 1) || \
-  (BENCHMARK_VERSION_MAJOR == 1 && BENCHMARK_VERSION_MINOR >= 9))
-using ApplyBenchmark = benchmark::Benchmark;
+namespace benchmark_compat {
+#if defined(BENCHMARK_VERSION) || defined(BENCHMARK_HAS_PUBLIC_CLASS)
+    using ApplyBenchmark = ::benchmark::Benchmark;
 #else
-using ApplyBenchmark = benchmark::internal::Benchmark;
+    using ApplyBenchmark = ::benchmark::internal::Benchmark;
 #endif
 
-}  // namespace benchmark_compat
+}
 
 // This does not make use of PauseTiming or ResumeTiming because timing is very short for these
 // benchmarks. However, they should allow for comparisons to the other benchmark_malloc_realloc

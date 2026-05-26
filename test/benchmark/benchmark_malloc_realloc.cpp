@@ -18,18 +18,14 @@
 #include "./macros.h"
 #include "performance_test_fixture/performance_test_fixture.hpp"
 
-namespace benchmark_compat
-{
-
-#if defined(BENCHMARK_VERSION_MAJOR) && \
-  ((BENCHMARK_VERSION_MAJOR > 1) || \
-  (BENCHMARK_VERSION_MAJOR == 1 && BENCHMARK_VERSION_MINOR >= 9))
-using ApplyBenchmark = benchmark::Benchmark;
+namespace benchmark_compat {
+#if defined(BENCHMARK_VERSION) || defined(BENCHMARK_HAS_PUBLIC_CLASS)
+    using ApplyBenchmark = ::benchmark::Benchmark;
 #else
-using ApplyBenchmark = benchmark::internal::Benchmark;
+    using ApplyBenchmark = ::benchmark::internal::Benchmark;
 #endif
 
-}  // namespace benchmark_compat
+}
 
 namespace
 {

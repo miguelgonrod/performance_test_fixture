@@ -100,5 +100,5 @@ const auto realloc_args = [](auto * b)
       b->Args({1ll << malloc_shift, 1ll << realloc_shift});
     }
   }
-};
+  };
 BENCHMARK(benchmark_on_realloc)->ArgNames({"Alloc Size", "Realloc Size"})->Apply(realloc_args);

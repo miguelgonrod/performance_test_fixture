@@ -149,7 +149,7 @@ const auto realloc_args = [](auto * b)
       b->Args({kEnablePerformanceTracking, 1ll << malloc_shift, 1ll << realloc_shift});
     }
   }
-};
+  };
 
 BENCHMARK_REGISTER_F(PerformanceTestFixture, benchmark_on_realloc)
 ->ArgNames({"Enable Performance Tracking", "Alloc Size", "Realloc Size"})
